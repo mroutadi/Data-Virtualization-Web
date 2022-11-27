@@ -1,0 +1,21 @@
+{
+  "name": "data-virtualization-web",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "eslint": "8.22.0",
+    "eslint-config-next": "13.0.5",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "next": "13.0.5",
+    "prettier": "^2.8.0",
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
+  }
+}
