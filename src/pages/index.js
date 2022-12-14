@@ -1,9 +1,9 @@
+import { FileUploader } from "../components/file-uploader";
+
 export default function Home() {
   return (
     <div>
-      <h1>
-        Hello World from <b>Data Virtualization Web!</b>
-      </h1>
+      <FileUploader />
     </div>
   );
 }

@@ -9,13 +9,18 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@chakra-ui/react": "^2.4.3",
+    "@emotion/styled": "^11.10.5",
+    "d3": "^7.7.0",
     "eslint": "8.22.0",
     "eslint-config-next": "13.0.5",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.2.1",
+    "framer-motion": "^7.6.19",
     "next": "13.0.5",
     "prettier": "^2.8.0",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "react-spreadsheet-import": "^2.0.8"
   }
 }
