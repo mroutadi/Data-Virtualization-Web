@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { ReactSpreadsheetImport } from "react-spreadsheet-import";
+import { Histogram } from "../D3/Histogram";
 
 const fields = [
   {
@@ -48,6 +49,19 @@ export function FileUploader() {
         onSubmit={(data) => setData(data)}
         fields={fields}
       />
+      {data && (
+        <svg>
+          <Histogram
+            data={data?.validData}
+            options={{
+              value: (d) => +d?.price,
+              label: "test",
+              height: 500,
+              color: "steelblue",
+            }}
+          />
+        </svg>
+      )}
     </div>
   );
 }
