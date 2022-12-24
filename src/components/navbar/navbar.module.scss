@@ -1,0 +1,70 @@
+.Navbar {
+  width: 100%;
+  border-bottom: 1px solid #555a;
+
+  &__TabsContainer {
+    display: flex;
+    height: 40px;
+    justify-content: flex-start;
+    align-items: center;
+    width: calc(100% - 75px);
+    overflow: auto;
+
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  &__Tab {
+    max-width: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    padding: 8px;
+    position: relative;
+    height: 100%;
+    border-right: 1px solid #aaa7;
+    transition: 150ms;
+    
+    &:hover {
+      cursor: pointer;
+      background-color: #ccc;
+      transition: 250ms;
+    }
+
+    &--active {
+      background-color: #eee;
+      &:hover {
+        background-color: #eee;
+        cursor: default;
+      }
+    }
+  }
+
+  &__TabTitle {
+    overflow: hidden;
+    line-clamp: 1;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+  }
+
+  &__closeButton {
+    font-size: 16px;
+    border-radius: 4px;
+    width: 20px;
+    min-width: 20px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &:hover {
+      cursor: pointer;
+      background-color: #0002;
+      transition: 250ms;
+    }
+  }
+}

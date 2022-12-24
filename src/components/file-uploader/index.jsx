@@ -37,12 +37,11 @@ const fields = [
 ];
 
 export function FileUploader() {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
   const [data, setData] = useState(null);
 
   return (
     <div>
-      <button onClick={() => setIsOpen(true)}>Open</button>
       <ReactSpreadsheetImport
         isOpen={isOpen}
         onClose={() => setIsOpen(false)}
