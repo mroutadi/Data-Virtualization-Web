@@ -1,0 +1,20 @@
+.EmptyState {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  &__Container {
+    transform: translate(0, -50%);
+  }
+
+  &__title {
+    margin: 0;
+  }
+
+  &__description {
+    margin: 0;
+  }
+}

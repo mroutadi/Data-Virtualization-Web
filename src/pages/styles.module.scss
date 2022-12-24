@@ -1,0 +1,40 @@
+.Main {
+
+  &__addButton {
+    position: absolute;
+    right: 16px;
+    top: 8px;
+    width: 55px;
+    height: 55px;
+    border: 1px solid #1117;
+    color: #1117;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    border-radius: 16px;
+    font-size: 40px;
+    padding-bottom: 5px;
+    padding-left: 15px;
+    transition: 250ms;
+    overflow: hidden;
+    gap: 36px;
+
+    &:after {
+      content: 'New Chart';
+      white-space: nowrap;
+      font-size: 24px;
+      padding: 4px;
+      margin-top: 3px;
+    }
+    &:hover {
+      cursor: pointer;
+      gap: 4px;
+      border: 1px solid #111f;
+      background-color: #aaa1;
+      color: #444f;
+      transition: 250ms;
+      width: 160px;
+      font-size: 30px;
+    }
+  }
+}
