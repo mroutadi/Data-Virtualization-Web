@@ -1,29 +1,42 @@
 import { AddButton } from "../add-button";
 import styles from "./navbar.module.scss";
 
-export const Navbar = ({ addNewChartHandler, tabs }) => {
+export const Navbar = ({
+  addNewTabHandler,
+  removeTabHandler,
+  activateTabHandler,
+  tabs,
+  activeTabId,
+}) => {
+  const handleCloseTabButton =
+    ({ tabId, tabIndex }) =>
+    (e) => {
+      e.stopPropagation();
+      removeTabHandler({ tabId, tabIndex });
+    };
   return (
     <div className={styles.Navbar}>
-      <AddButton onClick={addNewChartHandler} />
+      <AddButton onClick={addNewTabHandler} />
       <div className={styles.Navbar__TabsContainer}>
-        {tabs.map((tabItem) => (
-          <div key={tabItem.tabId} className={styles.Navbar__Tab}>
+        {tabs.map((tabItem, index) => (
+          <div
+            key={tabItem.tabId}
+            onClick={activateTabHandler(tabItem.tabId)}
+            className={`${styles.Navbar__Tab} ${
+              tabItem.tabId === activeTabId && styles["Navbar__Tab--active"]
+            }`}
+          >
             <span title={tabItem.tabName} className={styles.Navbar__TabTitle}>
               {tabItem.tabName}
             </span>
-            <span className={styles.Navbar__closeButton}>×</span>
+            <span
+              onClick={handleCloseTabButton({ tabId: tabItem.tabId, tabIndex: index })}
+              className={styles.Navbar__closeButton}
+            >
+              ×
+            </span>
           </div>
         ))}
-        {/*<div className={styles.Navbar__Tab}>*/}
-        {/*  <span className={styles.Navbar__TabTitle}>Omid</span>*/}
-        {/*  <span className={styles.Navbar__closeButton}>×</span>*/}
-        {/*</div>*/}
-        {/*<div className={`${styles.Navbar__Tab} ${styles["Navbar__Tab--active"]}`}>*/}
-        {/*  <span className={styles.Navbar__TabTitle} title={"Ali asdf asdf as dfasd fa"}>*/}
-        {/*    Ali asdf asdf as dfasd fa*/}
-        {/*  </span>*/}
-        {/*  <span className={styles.Navbar__closeButton}>×</span>*/}
-        {/*</div>*/}
       </div>
     </div>
   );
