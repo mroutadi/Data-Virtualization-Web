@@ -1,0 +1,36 @@
+.NewTabInfo {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 16px;
+  flex-direction: column;
+
+  label {
+    font-size: 12px;
+  }
+
+  & > div {
+    width: 100%;
+  }
+
+  &__input {
+    width: 100%;
+    padding: 8px;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #3333;
+  }
+
+  &__submit {
+    width: 100%;
+    padding: 8px;
+    border-radius: 8px;
+    margin-top: 16px;
+    overflow: hidden;
+    border: 1px solid #3333;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}

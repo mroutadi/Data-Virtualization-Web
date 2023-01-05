@@ -1,0 +1,52 @@
+.Modal {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 10;
+  background: #0003;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__Content {
+    background-color: #fff;
+    min-width: 450px;
+    max-width: 650px;
+    min-height: 450px;
+    max-height: 650px;
+    border-radius: 8px;
+  }
+
+  &__Title {
+    padding: 8px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 24px;
+  }
+
+  &__CloseButton {
+    font-size: 24px;
+    padding-bottom: 4px;
+    width: 24px;
+    border-radius: 4px;
+    min-width: 24px;
+    height: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 250ms;
+    
+    &:hover {
+      cursor: pointer;
+      background-color: #0002;
+      transition: 250ms;
+    }
+  }
+
+  &__Body {
+    padding: 8px 16px;
+  }
+}

@@ -4,6 +4,8 @@ import { FileUploader } from "../components/file-uploader";
 import { EmptyState } from "../components/empty-state";
 import { Navbar } from "../components/navbar";
 import { useDataBase } from "../hooks/useDataBase";
+import { NewTabInfo } from "../components/new-tab-info";
+import { Modal } from "../components/modal";
 
 export default function Home() {
   const { tabsData, addTab, removeTab } = useDataBase();
@@ -11,7 +13,7 @@ export default function Home() {
 
   const addNewTabHandler = () => {
     const newTab = {
-      tabName: "Test",
+      tabName: `New Tab${tabsData.length <= 0 ? "" : tabsData.length}`,
       tabId: uuidv4(),
     };
     addTab({ tabData: newTab });
@@ -41,6 +43,9 @@ export default function Home() {
 
   return (
     <div>
+      <Modal title="New Tab">
+        <NewTabInfo />
+      </Modal>
       <Navbar
         addNewTabHandler={addNewTabHandler}
         removeTabHandler={removeTabHandler}
@@ -51,8 +56,8 @@ export default function Home() {
       {tabsData.length > 0 ? (
         <div>
           {tabsData.map((tabItem) => {
-            // return <FileUploader key={tabItem.tabId} />;
-            return <div key={tabItem.tabId}>{tabItem.tabName}</div>;
+            return <FileUploader key={tabItem.tabId} />;
+            // return <div key={tabItem.tabId}>{tabItem.tabName}</div>;
           })}
         </div>
       ) : (
