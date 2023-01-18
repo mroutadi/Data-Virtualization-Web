@@ -1,12 +1,11 @@
-.FileUpload {
-
-  &__hidden {
-    display: none;
-  }
-
+.SvgWrapper {
   &__svgContainer {
     display: block;
     width: 100vw;
     height: calc(100vh - 80px);
+  }
+
+  &__hidden {
+    display: none;
   }
 }

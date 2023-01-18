@@ -10,14 +10,14 @@ export function Histogram({
     type = d3.scaleLinear, // convenience alias for xType
     x = value, // given d in data, returns the (quantitative) x-value
     y = () => 1, // given d in data, returns the (quantitative) weight
-    thresholds = 40, // approximate number of bins to generate, or threshold function
+    thresholds = 20, // approximate number of bins to generate, or threshold function
     normalize, // whether to normalize values to a total of 100%
     marginTop = 20, // top margin, in pixels
     marginRight = 30, // right margin, in pixels
     marginBottom = 30, // bottom margin, in pixels
     marginLeft = 40, // left margin, in pixels
-    width = 640, // outer width of chart, in pixels
-    height = 400, // outer height of chart, in pixels
+    width = window.innerWidth, // outer width of chart, in pixels
+    height = window.innerHeight - 90, // outer height of chart, in pixels
     insetLeft = 0.5, // inset left edge of bar
     insetRight = 0.5, // inset right edge of bar
     xType = type, // type of x-scale
@@ -28,7 +28,7 @@ export function Histogram({
     yType = d3.scaleLinear, // type of y-scale
     yDomain, // [ymin, ymax]
     yRange = [height - marginBottom, marginTop], // [bottom, top]
-    yLabel = "↑ Frequency", // a label for the y-axis
+    yLabel = "Frequency", // a label for the y-axis
     yFormat = normalize ? "%" : undefined, // a format specifier string for the y-axis
     color = "currentColor", // bar fill color
   } = {},

@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-import { FileUploader } from "../components/file-uploader";
 import { EmptyState } from "../components/empty-state";
 import { Navbar } from "../components/navbar";
 import { useDataBase } from "../hooks/useDataBase";
 import { NewTabInfo } from "../components/new-tab-info";
 import { Modal } from "../components/modal";
+import { SvgWrapper } from "../components/svgWrapper";
 
 export default function Home() {
   const { tabsData, addTab, removeTab } = useDataBase();
@@ -73,11 +73,12 @@ export default function Home() {
         <div>
           {tabsData.map((tabItem) => {
             return (
-              <FileUploader
+              <SvgWrapper
                 isActive={tabItem.tabId === activeTabId}
                 keyColTitle={tabItem.keyColTitle}
                 valColTitle={tabItem.valColTitle}
                 key={tabItem.tabId}
+                tabName={tabItem.tabName}
               />
             );
           })}
