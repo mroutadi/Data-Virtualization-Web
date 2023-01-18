@@ -10,11 +10,25 @@ import { Modal } from "../components/modal";
 export default function Home() {
   const { tabsData, addTab, removeTab } = useDataBase();
   const [activeTabId, setActiveTabId] = useState(null);
+  const [newTabModalStatus, setNewTabModalStatus] = useState(false);
 
-  const addNewTabHandler = () => {
+  const closeNewTabModal = () => {
+    setNewTabModalStatus(false);
+  };
+
+  const openNewTabModal = () => {
+    setNewTabModalStatus(true);
+  };
+
+  const addNewTabHandler = ({ tabName, keyColTitle, valColTitle }) => {
+    closeNewTabModal();
     const newTab = {
-      tabName: `New Tab${tabsData.length <= 0 ? "" : tabsData.length}`,
+      tabName: tabName
+        ? tabName
+        : `New Tab${tabsData.length <= 0 ? "" : tabsData.length}`,
       tabId: uuidv4(),
+      keyColTitle,
+      valColTitle,
     };
     addTab({ tabData: newTab });
     setActiveTabId(newTab.tabId);
@@ -43,11 +57,13 @@ export default function Home() {
 
   return (
     <div>
-      <Modal title="New Tab">
-        <NewTabInfo />
-      </Modal>
+      {newTabModalStatus && (
+        <Modal handleCloseModal={closeNewTabModal} title="New Tab">
+          <NewTabInfo addNewTabHandler={addNewTabHandler} />
+        </Modal>
+      )}
       <Navbar
-        addNewTabHandler={addNewTabHandler}
+        toggleNewTabModal={openNewTabModal}
         removeTabHandler={removeTabHandler}
         activateTabHandler={activateTabHandler}
         tabs={tabsData}
@@ -56,8 +72,14 @@ export default function Home() {
       {tabsData.length > 0 ? (
         <div>
           {tabsData.map((tabItem) => {
-            return <FileUploader key={tabItem.tabId} />;
-            // return <div key={tabItem.tabId}>{tabItem.tabName}</div>;
+            return (
+              <FileUploader
+                isActive={tabItem.tabId === activeTabId}
+                keyColTitle={tabItem.keyColTitle}
+                valColTitle={tabItem.valColTitle}
+                key={tabItem.tabId}
+              />
+            );
           })}
         </div>
       ) : (

@@ -1,47 +1,51 @@
 import { useState } from "react";
 import { ReactSpreadsheetImport } from "react-spreadsheet-import";
 import { Histogram } from "../D3/Histogram";
+import styles from "./styles.module.scss";
 
-const fields = [
-  {
-    label: "Good",
-    key: "good",
-    alternateMatches: ["product"],
-    fieldType: {
-      type: "input",
-    },
-    example: "T-Shirt",
-    validations: [
-      {
-        rule: "required",
-        errorMessage: "product name is required",
-        level: "error",
+export function FileUploader({
+  className = "",
+  isActive = false,
+  keyColTitle = "key",
+  valColTitle = "value",
+}) {
+  const fields = [
+    {
+      label: keyColTitle,
+      key: keyColTitle,
+      fieldType: {
+        type: "input",
       },
-    ],
-  },
-  {
-    label: "Price",
-    key: "price",
-    fieldType: {
-      type: "input",
+      example: "Key",
+      validations: [
+        {
+          rule: "required",
+          errorMessage: `${keyColTitle} is required`,
+          level: "error",
+        },
+      ],
     },
-    example: "50000",
-    validations: [
-      {
-        rule: "required",
-        errorMessage: "Price is required",
-        level: "error",
+    {
+      label: valColTitle,
+      key: valColTitle,
+      fieldType: {
+        type: "input",
       },
-    ],
-  },
-];
-
-export function FileUploader() {
+      example: "Value",
+      validations: [
+        {
+          rule: "required",
+          errorMessage: `${valColTitle} is required`,
+          level: "error",
+        },
+      ],
+    },
+  ];
   const [isOpen, setIsOpen] = useState(true);
   const [data, setData] = useState(null);
 
   return (
-    <div>
+    <div className={`${className} ${isActive ? "" : styles.FileUpload__hidden}`}>
       <ReactSpreadsheetImport
         isOpen={isOpen}
         onClose={() => setIsOpen(false)}
@@ -49,7 +53,7 @@ export function FileUploader() {
         fields={fields}
       />
       {data && (
-        <svg>
+        <svg className={styles.FileUpload__svgContainer}>
           <Histogram
             data={data?.validData}
             options={{

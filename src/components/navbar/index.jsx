@@ -2,9 +2,9 @@ import { AddButton } from "../add-button";
 import styles from "./navbar.module.scss";
 
 export const Navbar = ({
-  addNewTabHandler,
   removeTabHandler,
   activateTabHandler,
+  toggleNewTabModal,
   tabs,
   activeTabId,
 }) => {
@@ -16,7 +16,7 @@ export const Navbar = ({
     };
   return (
     <div className={styles.Navbar}>
-      <AddButton onClick={addNewTabHandler} />
+      <AddButton onClick={toggleNewTabModal} />
       <div className={styles.Navbar__TabsContainer}>
         {tabs.map((tabItem, index) => (
           <div

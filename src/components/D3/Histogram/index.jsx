@@ -116,15 +116,7 @@ export function Histogram({
       );
   });
   return (
-    <svg
-      ref={ref}
-      style={{
-        height: 500,
-        width: "100%",
-        marginRight: "0px",
-        marginLeft: "0px",
-      }}
-    >
+    <svg ref={ref}>
       <g className="plot-area" />
       <g className="x-axis" />
       <g className="y-axis" />
