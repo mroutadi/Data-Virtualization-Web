@@ -1,12 +1,11 @@
 import styles from "./styles.module.scss";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { FileUploader } from "../file-uploader";
 import { Histogram } from "../D3/Histogram";
 
 export const SvgWrapper = ({
   keyColTitle = "key",
   valColTitle = "value",
-  className = "",
   tabName = "",
   isActive = false,
 }) => {
@@ -44,26 +43,31 @@ export const SvgWrapper = ({
   ];
   const [isOpen, setIsOpen] = useState(true);
   const [data, setData] = useState(null);
+  const memoized = useMemo(
+    () => (
+      <svg className={styles.SvgWrapper__svgContainer}>
+        <Histogram
+          data={data?.validData}
+          options={{
+            value: (d) => +d?.[valColTitle],
+            label: tabName,
+            color: "steelblue",
+          }}
+        />
+      </svg>
+    ),
+    [data],
+  );
   return (
-    <div className={`${className} ${isActive ? "" : styles.SvgWrapper__hidden}`}>
+    <div className={`${styles.SvgWrapper} ${isActive ? "" : styles.SvgWrapper__hidden}`}>
+      <h2 className={styles.SvgWrapper__Title}>{tabName}</h2>
       <FileUploader
         isOpen={isOpen}
         setIsOpen={setIsOpen}
         setData={setData}
         fields={fields}
       />
-      {data && (
-        <svg className={styles.SvgWrapper__svgContainer}>
-          <Histogram
-            data={data?.validData}
-            options={{
-              value: (d) => +d?.[valColTitle],
-              label: tabName,
-              color: "steelblue",
-            }}
-          />
-        </svg>
-      )}
+      {data && memoized}
     </div>
   );
 };

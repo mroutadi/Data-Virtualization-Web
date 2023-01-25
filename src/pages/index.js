@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { EmptyState } from "../components/empty-state";
 import { Navbar } from "../components/navbar";
@@ -6,11 +6,20 @@ import { useDataBase } from "../hooks/useDataBase";
 import { NewTabInfo } from "../components/new-tab-info";
 import { Modal } from "../components/modal";
 import { SvgWrapper } from "../components/svgWrapper";
+import { DomToPdf } from "../utils/domToPdf";
 
 export default function Home() {
   const { tabsData, addTab, removeTab } = useDataBase();
   const [activeTabId, setActiveTabId] = useState(null);
+  const [isPrinting, setIsPrinting] = useState(false);
   const [newTabModalStatus, setNewTabModalStatus] = useState(false);
+  const containerRef = useRef(null);
+  const exportTabs = () => {
+    setIsPrinting(true);
+    setTimeout(function () {
+      DomToPdf({ divEl: containerRef.current, cb: () => setIsPrinting(false) });
+    }, 100);
+  };
 
   const closeNewTabModal = () => {
     setNewTabModalStatus(false);
@@ -66,15 +75,16 @@ export default function Home() {
         toggleNewTabModal={openNewTabModal}
         removeTabHandler={removeTabHandler}
         activateTabHandler={activateTabHandler}
+        onExport={exportTabs}
         tabs={tabsData}
         activeTabId={activeTabId}
       />
       {tabsData.length > 0 ? (
-        <div>
+        <div ref={containerRef}>
           {tabsData.map((tabItem) => {
             return (
               <SvgWrapper
-                isActive={tabItem.tabId === activeTabId}
+                isActive={tabItem.tabId === activeTabId || isPrinting}
                 keyColTitle={tabItem.keyColTitle}
                 valColTitle={tabItem.valColTitle}
                 key={tabItem.tabId}

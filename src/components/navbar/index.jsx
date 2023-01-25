@@ -1,10 +1,11 @@
-import { AddButton } from "../add-button";
+import { Buttons } from "../buttons";
 import styles from "./navbar.module.scss";
 
 export const Navbar = ({
   removeTabHandler,
   activateTabHandler,
   toggleNewTabModal,
+  onExport,
   tabs,
   activeTabId,
 }) => {
@@ -16,7 +17,11 @@ export const Navbar = ({
     };
   return (
     <div className={styles.Navbar}>
-      <AddButton onClick={toggleNewTabModal} />
+      <Buttons
+        hasExport={tabs.length > 0}
+        onExport={onExport}
+        onAddNewTab={toggleNewTabModal}
+      />
       <div className={styles.Navbar__TabsContainer}>
         {tabs.map((tabItem, index) => (
           <div

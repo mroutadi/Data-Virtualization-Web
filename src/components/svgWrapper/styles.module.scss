@@ -1,8 +1,27 @@
 .SvgWrapper {
+  width: 100vw;
+  height: calc(100vh - 80px);
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
   &__svgContainer {
+    border: 1px solid;
+    padding: 24px;
+    border-radius: 16px;
     display: block;
-    width: 100vw;
-    height: calc(100vh - 80px);
+    box-sizing: content-box;
+    width: 1500px;
+    height: 800px;
+  }
+
+  &__Title {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    padding: 0;
   }
 
   &__hidden {

@@ -17,13 +17,17 @@
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.2.1",
     "framer-motion": "^7.6.19",
+    "html2canvas": "^1.4.1",
+    "jspdf": "^2.5.1",
     "next": "13.0.5",
     "prettier": "^2.8.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-hook-form": "^7.41.1",
+    "react-pdf": "^6.2.2",
     "react-spreadsheet-import": "^2.0.8",
     "sass": "^1.57.1",
+    "svg-to-img": "^2.0.9",
     "uuid": "^9.0.0"
   }
 }

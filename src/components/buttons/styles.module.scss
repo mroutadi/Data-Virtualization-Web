@@ -1,16 +1,19 @@
-.AddButton {
+.Container {
   position: absolute;
+  display: flex;
   right: 16px;
   top: 8px;
+  gap: 4px;
+}
+.AddButton, .ExportButton {
+  border: 1px solid #1117;
   width: 55px;
   height: 55px;
-  border: 1px solid #1117;
   color: #1117;
   display: flex;
   justify-content: flex-start;
   align-items: center;
   border-radius: 16px;
-  font-size: 40px;
   padding-bottom: 5px;
   padding-left: 15px;
   transition: 250ms;
@@ -21,7 +24,6 @@
 
 
   &:after {
-    content: 'New Chart';
     white-space: nowrap;
     font-size: 24px;
     padding: 4px;
@@ -36,5 +38,24 @@
     transition: 250ms;
     width: 170px;
     font-size: 30px;
+  }
+}
+.AddButton {
+  font-size: 40px;
+
+  &:after {
+    content: 'New Chart';
+  }
+}
+
+.ExportButton {
+  font-size: 26px;
+  filter: grayscale(100%);
+  &:hover {
+    width: 180px;
+  }
+
+  &:after {
+    content: 'Export PDF';
   }
 }
